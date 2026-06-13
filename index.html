@@ -5,7 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+function addTopic()
+{
+    let topic = document.getElementById("topicInput").value;
+
+    if(topic === "")
+    {
+        return;
+    }
+
+    let p = document.createElement("p");
+
+    p.innerText = topic;
+
+    document.getElementById("topicList").appendChild(p);
+
+    document.getElementById("topicInput").value = "";
+}
+</script>
 </head>
+
 <body>
     <div class="hero">
         <div class="navbar">
@@ -95,10 +115,11 @@
     
      <section class="manager-section">
     <div class="Topic-Manager">
-        <form>
+        <form onsubmit="return false;"></form>
         <label for="Topic tracker"><b>Add Dsa Topic</b></label><br>
-        <input type="text" placeholder="Add here"><br>
-         <button id="btn">Add Topic</button>
+        <input type="text" id="topicInput"  placeholder="Add here"><br>
+        <button type="button" onclick="addTopic()">Add Topic</button>
+        <div id="topicList"></div>
         <br><br>        
         </div>
 
