@@ -8,6 +8,8 @@
     <script>
 function addTopic()
 {
+
+    
     let topic = document.getElementById("topicInput").value;
 
     if(topic === "")
@@ -15,13 +17,28 @@ function addTopic()
         return;
     }
 
-    let p = document.createElement("p");
+    let div = document.createElement("div");
 
-    p.innerText = topic;
+    div.classList.add("topic-item");
 
-    document.getElementById("topicList").appendChild(p);
+    let span = document.createElement("span");
+    span.innerText = topic;
+
+    let btn = document.createElement("button");
+    btn.innerText = "Delete";
+
+    btn.onclick = function()
+    {
+        div.remove();
+    };
+
+    div.appendChild(span);
+    div.appendChild(btn);
+
+    document.getElementById("topicList").appendChild(div);
 
     document.getElementById("topicInput").value = "";
+    
 }
 </script>
 </head>
@@ -115,7 +132,7 @@ function addTopic()
     
      <section class="manager-section">
     <div class="Topic-Manager">
-        <form onsubmit="return false;"></form>
+        
         <label for="Topic tracker"><b>Add Dsa Topic</b></label><br>
         <input type="text" id="topicInput"  placeholder="Add here"><br>
         <button type="button" onclick="addTopic()">Add Topic</button>
@@ -124,7 +141,7 @@ function addTopic()
         </div>
 
         <div class="Topic-Manager">
-        <form>
+        
         <label for="Project Name"><b>Add Project Name</b></label><br>
         <input type="text" placeholder="Add here"><br>
          <button id="btn">Add Project</button>
@@ -132,7 +149,7 @@ function addTopic()
         </div>
   
      <div class="Topic-Manager">
-        <form>
+       
         <label for="Company Tracker"><b>Company Name</b></label><br>
         <input type="text" placeholder="Add here"><br>
          <button id="btn">Add Company</button>
@@ -140,6 +157,6 @@ function addTopic()
         </div>
     </section>
    
-    <small>Built By prabhjot</small>
+    
 </body>
 </html>
