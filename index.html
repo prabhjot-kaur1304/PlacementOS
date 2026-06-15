@@ -6,10 +6,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <script>
-function addTopic()
+ function addTopic()
 {
-
-    
     let topic = document.getElementById("topicInput").value;
 
     if(topic === "")
@@ -17,12 +15,71 @@ function addTopic()
         return;
     }
 
+    createItem(topic, "topicList");
+
+    document.getElementById("topicInput").value = "";
+}
+   
+
+    function addProject()
+{
+    let project = document.getElementById("projectInput").value;
+
+    if(project === "")
+    {
+        return;
+    }
+
+    createItem(project, "projectList");
+
+    document.getElementById("projectInput").value = "";
+}
+
+function addCompany()
+{
+    let company = document.getElementById("companyInput").value;
+    let status = document.getElementById("companyStatus").value;
+
+    if(company === "")
+    {
+        return;
+    }
+
+    let div = document.createElement("div");
+    div.classList.add("topic-item");
+
+    let companySpan = document.createElement("span");
+    companySpan.innerText = company;
+
+    let statusSpan = document.createElement("span");
+    statusSpan.innerText = status;
+
+    let btn = document.createElement("button");
+    btn.innerText = "Delete";
+
+    btn.onclick = function()
+    {
+        div.remove();
+    };
+
+    div.appendChild(companySpan);
+    div.appendChild(statusSpan);
+    div.appendChild(btn);  
+
+    document.getElementById("companyList").appendChild(div);
+
+    document.getElementById("companyInput").value = "";
+}
+
+
+function createItem(text, listId)
+{
     let div = document.createElement("div");
 
     div.classList.add("topic-item");
 
     let span = document.createElement("span");
-    span.innerText = topic;
+    span.innerText = text;
 
     let btn = document.createElement("button");
     btn.innerText = "Delete";
@@ -35,11 +92,9 @@ function addTopic()
     div.appendChild(span);
     div.appendChild(btn);
 
-    document.getElementById("topicList").appendChild(div);
-
-    document.getElementById("topicInput").value = "";
-    
+    document.getElementById(listId).appendChild(div);
 }
+
 </script>
 </head>
 
@@ -143,18 +198,37 @@ function addTopic()
         <div class="Topic-Manager">
         
         <label for="Project Name"><b>Add Project Name</b></label><br>
-        <input type="text" placeholder="Add here"><br>
-         <button id="btn">Add Project</button>
+       <input type="text" id="projectInput" placeholder="Add here"><br>
+        <button type="button" onclick="addProject()">Add Project</button>
+        <div id="projectList"></div>
         <br><br>        
         </div>
   
-     <div class="Topic-Manager">
-       
-        <label for="Company Tracker"><b>Company Name</b></label><br>
-        <input type="text" placeholder="Add here"><br>
-         <button id="btn">Add Company</button>
-        <br><br>        
-        </div>
+    <div class="Topic-Manager">
+
+    <label><b>Company Name</b></label><br>
+
+    <input type="text" id="companyInput" placeholder="Company Name">
+
+    <br><br>
+
+    <select id="companyStatus">
+        <option>Applied</option>
+        <option>Online Assessment</option>
+        <option>Interview</option>
+        <option>Selected</option>
+        <option>Rejected</option>
+    </select>
+
+    <br><br>
+
+    <button type="button" onclick="addCompany()">
+        Add Company
+    </button>
+
+    <div id="companyList"></div>
+
+</div>
     </section>
    
     
