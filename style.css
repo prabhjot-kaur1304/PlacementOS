@@ -1,204 +1,214 @@
-.hero
-{
-    text-align:center;
-    padding:80px 20px;
-    max-width: 800px;
-    margin: auto;
-}
-H3
-{
-    color: rgba(37, 18, 8, 0.649);
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
 }
 
-.navbar
-{
-    justify-content:space-between;
+body{
+    background:#eef2ff;
+    color:#222;
+}
+
+/* NAVBAR */
+
+.navbar{
     display:flex;
+    justify-content:space-between;
     align-items:center;
     padding:20px 60px;
+    background:#071330;
 }
-.nav-links
-{
-    display:flex;
-    gap:20px;
-}
-.nav-links a
-{
-    text-decoration: underline;
-    color:black;
-    transition:0.3s;
-}
-.nav-links a:hover{
-    color:rgb(0, 136, 255);
-}
-body
-{
-    background-color:#eef2ff;
-    font-family: 'Segoe UI', sans-serif;
-}
-.manage
-{
-    justify-content:space-evenly;
-    display:flex;
-}
-button
-{
+
+.navbar h1{
     color:white;
-    padding:12px 24px;
-    border-radius:8px;
-    background-color:#002d904d;
-    cursor:pointer;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+}
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(135deg,#071330,#0d2a70);
+    color:white;
+    padding:60px;
+}
+
+.hero h3{
+    font-size:42px;
+    max-width:600px;
+    margin-bottom:20px;
+}
+
+.manage{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin:25px 0;
+}
+
+.manage div{
+    background:rgba(255,255,255,0.1);
+    padding:12px 20px;
+    border-radius:25px;
+}
+
+.hero button{
+    padding:15px 35px;
     border:none;
+    border-radius:10px;
+    background:#6c63ff;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
 }
 
-.features{
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+/* SECTIONS */
+
+h3{
+    text-align:center;
+    margin:40px 0;
+    font-size:30px;
 }
 
-.card{
-    background: white;
-    width: 220px;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-    transition:0.3s
-}
-
-.card:hover{
-    transform: translateY(-10px);
-}
-.Importance{
+.features,
+.Importance,
+.statistics{
+    display:flex;
     justify-content:center;
-    gap:20px;
-    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
 }
-.card1
-{
-    background:white;
-    width:220px;
-    padding:20px;
-    border-radius:12px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-    transition:0.3s
-}
-.card1:hover
-{
-    transform: translateY(-10px);
-}
-.statistics
-{
-    display:flex;
-    gap: 20px;
-    justify-content: center;
-    
-}
+
+.card,
+.card1,
 .Questions{
     background:white;
-    width:220px;
-    padding:20px;
-    border-radius:12px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-    transition:0.3s;
-    text-align: center;
-    
+    width:250px;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    text-align:center;
 }
-.Questions:hover
-{
-    transform: translateY(-10px);
+
+/* STATS */
+
+.Questions p{
+    font-size:35px;
+    color:#4f46e5;
+    margin-top:10px;
+    font-weight:bold;
 }
+
+/* MANAGER SECTION */
+
 .manager-section{
-   
-    display: flex;
-    gap:20px;
+    display:flex;
     justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    margin-bottom:50px;
 }
-.Topic-Manager
-{
-   background:white;
-    width:300px;
-    min-height:100px;
-    padding:20px;
-    margin:30px auto;
-    border-radius:10px;
-    box-shadow:0px 2px 8px rgba(0,0,0,0.1);
-    text-align: center;
-}
-.Topic-Manager:hover
-{
-    transform: translateY(-10px);
-}
-#btn
-{
-    color:white;
-    padding:5px 10px;
-    border-radius:8px;
-    background-color:#002d904d;
-    cursor:pointer;
-    border:none;
-}
-#topicList
-{
-    margin-top: 15px;
-    width: 100%;
-}
-.topic-item{
+
+.Topic-Manager{
+    width:380px;
+    min-height:500px;
     background:white;
-    padding:10px;
-    margin-top:10px 0;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.Topic-Manager label{
+    display:block;
+    text-align:center;
+    font-size:26px;
+    margin-bottom:20px;
+}
+
+.Topic-Manager input,
+.Topic-Manager select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+.Topic-Manager button{
+    width:100%;
+    padding:12px;
+    border:none;
     border-radius:10px;
-    width:80%;
-    margin-left:auto;
-    margin-right:auto;
-    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    background:#6c63ff;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.Topic-Manager button:hover{
+    background:#574bdb;
+}
+
+/* ITEMS */
+
+.topic-item{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    background:#f8fafc;
+    padding:15px;
+    margin-top:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
-.topic-item button
-{
+
+.topic-item button{
+    width:auto;
+    padding:8px 15px;
     background:red;
-    color:white;
-    border:none;
-    padding:5px 10px;
-    border-radius:5px;
-    cursor:pointer;
-}
-.statistics-dashboard
-{
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin: 40px 0;
 }
 
-.stat-card
-{
-    width: 250px;
-    min-height: 180px;
-
-    background: white;
-    border-radius: 20px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+.topic-item button:hover{
+    background:darkred;
 }
 
-.stat-card h3
-{
-    font-size: 28px;
-    margin-bottom: 20px;
+/* DASHBOARD COUNTERS */
+
+.dashboard{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin:40px 0;
 }
 
-.stat-card p
-{
-    font-size: 40px;
-    font-weight: bold;
-    color: #5b6d92;
+.stat-card{
+    width:250px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.stat-card h2{
+    color:#4f46e5;
+    font-size:45px;
+}
+
+.stat-card p{
+    margin-top:10px;
+    font-size:18px;
+    font-weight:600;
 }
