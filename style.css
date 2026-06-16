@@ -212,3 +212,45 @@ h3{
     font-size:18px;
     font-weight:600;
 }
+/*company status colors*/
+
+.applied
+{
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+.assessment
+{
+    background-color: #fef3c7;
+    color: #b45309;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+.interview
+{
+    background-color: #ede9fe;
+    color: #6d28d9;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+.selected
+{
+    background-color: #dcfce7;
+    color: #15803d;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.rejected
+{
+    background-color: #fee2e2;
+    color: #dc2626;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
