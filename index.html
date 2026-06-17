@@ -6,6 +6,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
      <script src="script.js"></script>
+     <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
 </head>
 
@@ -16,9 +18,10 @@
             <div class="nav-links">
             <a href="#">HOME</a>
              <a href="#">LOGIN</a>
-              <a href="#">FEATURES</a>
-           
+              <a href="#">FEATURES</a>           
             </div>
+            <br>
+            <button id="themeBtn" onclick="toggleTheme()">🌙</button>
         </div>
    
     <h3>Your Complete Placement Preparation System</h3>
@@ -95,8 +98,12 @@
 </div>
       </section>
         <hr>
-
-        <input type="text" id="searchInput" placeholder="Search Topics..." onkeyup="searchTopics()">
+         <h3>Search</h3>
+       <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search Topics, Projects, Companies..." onkeyup="searchAll()">
+       </div>
+       <hr>
 
       <h3> Topic Manager</h3>
     
@@ -140,6 +147,14 @@
     <button type="button" onclick="addCompany()">
         Add Company
     </button>
+
+    <div class="filter-buttons">
+    <button onclick="filterCompanies('All')">All</button>
+    <button onclick="filterCompanies('Applied')">Applied</button>
+    <button onclick="filterCompanies('Interview')">Interview</button>
+    <button onclick="filterCompanies('Selected')">Selected</button>
+    <button onclick="filterCompanies('Rejected')">Rejected</button>
+</div>
 
     <div id="companyList"></div>
 

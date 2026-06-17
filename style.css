@@ -27,6 +27,7 @@ body{
 .nav-links{
     display:flex;
     gap:30px;
+    align-items:center;
 }
 
 .nav-links a{
@@ -140,7 +141,7 @@ h3{
 .Topic-Manager select{
     width:100%;
     padding:12px;
-    border:1px solid #ccc;
+    border:1px solid #cccccc;
     border-radius:8px;
     margin-bottom:15px;
 }
@@ -151,7 +152,7 @@ h3{
     border:none;
     border-radius:10px;
     background:#6c63ff;
-    color:white;
+    color:rgb(255, 255, 255);
     cursor:pointer;
     font-size:16px;
 }
@@ -162,10 +163,12 @@ h3{
 
 /* ITEMS */
 
-.topic-item{
-    display:flex;
-    justify-content:space-between;
+/* .topic-item{
+    display:grid;
+    grid-template-columns: 1fr auto auto auto;
     align-items:center;
+    gap:10px;
+    justify-content:space-between;
     background:#f8fafc;
     padding:15px;
     margin-top:15px;
@@ -181,6 +184,71 @@ h3{
 
 .topic-item button:hover{
     background:darkred;
+} */
+
+
+.tracker-item
+{
+    background: white;
+    padding: 16px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    margin-top: 12px;
+    transition: 0.3s;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-left: 4px solid #4f46e5;
+
+}
+
+.tracker-item:hover
+{
+    transform: translateY(-3px);
+}
+
+.tracker-actions
+{
+    display: flex;
+    gap: 10px;
+}
+
+.tracker-actions button
+{
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.tracker-actions button:first-child
+{
+    background: #2563eb;
+    color: white;
+}
+
+.tracker-actions button:last-child
+{
+    background: #ef4444;
+    color: white;
+}
+
+#topicList .tracker-item
+{
+    border-left-color: #3b82f6;
+}
+
+#projectList .tracker-item
+{
+    border-left-color: #10b981;
+}
+
+.dark-mode .tracker-item
+{
+    background: #1f2937;
+    color: white;
 }
 
 /* DASHBOARD COUNTERS */
@@ -218,39 +286,310 @@ h3{
 {
     background-color: #dbeafe;
     color: #1d4ed8;
-    padding: 4px 8px;
-    border-radius: 5px;
 }
 
 .assessment
 {
     background-color: #fef3c7;
     color: #b45309;
-    padding: 4px 8px;
-    border-radius: 5px;
 }
 
 .interview
 {
     background-color: #ede9fe;
     color: #6d28d9;
-    padding: 4px 8px;
-    border-radius: 5px;
 }
 
 .selected
 {
     background-color: #dcfce7;
     color: #15803d;
-    padding: 4px 8px;
-    border-radius: 5px;
-    font-weight: bold;
 }
 
 .rejected
 {
     background-color: #fee2e2;
     color: #dc2626;
-    padding: 4px 8px;
-    border-radius: 5px;
+}
+.applied,
+.assessment,
+.interview,
+.selected,
+.rejected
+{
+    font-size:14px;
+    font-weight:600;
+    padding:6px 12px;
+    border-radius:20px;
+}
+
+.company-name
+{
+    flex: 1;
+    font-size: 20px;
+    font-weight: 600;
+}
+.status-badge
+{
+    padding: 8px 14px;
+    border-radius: 20px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+.edit-btn
+{
+    background: #2563eb;
+    color: white;
+    border: none;
+
+    padding: 8px 15px;
+    border-radius: 8px;
+}
+
+.delete-btn
+{
+    background: #ef4444;
+    color: white;
+    border: none;
+
+    padding: 8px 15px;
+    border-radius: 8px;
+}
+.filter-buttons
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.filter-buttons button
+{
+    padding: 8px 18px;
+    border: none;
+    border-radius: 20px;
+    background: #c2bff9;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+    width:auto !important;
+    min-width:100px;
+}
+
+.filter-buttons button:hover
+{
+    transform: translateY(-2px);
+}
+
+.filter-buttons button.active
+{
+    background: #1f2937;
+}
+.search-box
+{
+    width: 500px;
+    max-width: 90%;
+    margin: 30px auto;
+
+    display: flex;
+    align-items: center;
+
+    background: white;
+    border-radius: 30px;
+    padding: 12px 20px;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.search-box i
+{
+    color: #6c63ff;
+    margin-right: 10px;
+}
+
+.search-box input
+{
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: transparent;
+}
+.dark-mode
+{
+    background: #111827;
+    color: white;
+}
+
+.dark-mode .card,
+.dark-mode .card1,
+.dark-mode .Questions,
+.dark-mode .Topic-Manager,
+.dark-mode .topic-item
+{
+    background: #1f2937;
+    color: white;
+}
+
+.dark-mode .company-actions button
+{
+    color: white;
+}
+
+.dark-mode .company-actions button:first-child
+{
+    background: #3b82f6;
+}
+
+.dark-mode .company-actions button:last-child
+{
+    background: #ef4444;
+}
+
+.dark-mode .company-item
+{
+    background: #1f2937;
+    color: white;
+}
+
+.dark-mode input,
+.dark-mode select
+{
+    background: #374151;
+    color: white;
+    border: 1px solid #4b5563;
+}
+
+.dark-mode .navbar
+{
+    background: #000;
+}
+
+.dark-mode .hero
+{
+    background: linear-gradient(135deg,#000,#111827);
+}
+
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode label
+{
+    color: white;
+}
+#themeBtn
+{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: #6c63ff;
+    color: white;
+    font-size: 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.company-item
+{
+    background: white;
+    padding: 18px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.company-item:hover
+{
+    transform: translateY(-4px);
+}
+
+.company-top
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:10px;
+}
+
+.company-name
+{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+.company-actions button
+{
+    padding: 7px 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.company-actions button:first-child
+{
+    background: #2563eb;
+    color: white;
+}
+
+.company-actions button:last-child
+{
+    background: #ef4444;
+    color: white;
+}
+.company-actions
+{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.company-actions button
+{
+    padding: 7px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+.company-item
+{
+    border-left: 5px solid transparent;
+}
+
+.company-item:has(.applied) { border-left-color: #1d4ed8; }
+.company-item:has(.assessment) { border-left-color: #b45309; }
+.company-item:has(.interview) { border-left-color: #6d28d9; }
+.company-item:has(.selected) { border-left-color: #15803d; }
+.company-item:has(.rejected) { border-left-color: #dc2626; }
+
+.tracker-actions input {
+    font-size: 14px;
+    outline: none;
+}
+.edit-input {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #6c63ff;
+    outline: none;
+    font-size: 15px;
+}
+
+.save-btn {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
 }
