@@ -67,7 +67,7 @@ body{
     padding:15px 35px;
     border:none;
     border-radius:10px;
-    background:#6c63ff;
+    background:#0d2a70;
     color:white;
     font-size:16px;
     cursor:pointer;
@@ -151,7 +151,7 @@ h3{
     padding:12px;
     border:none;
     border-radius:10px;
-    background:#6c63ff;
+    background:#0d2a70;
     color:rgb(255, 255, 255);
     cursor:pointer;
     font-size:16px;
@@ -408,7 +408,7 @@ h3{
 
 .search-box i
 {
-    color: #6c63ff;
+    color: #0d2a70;
     margin-right: 10px;
 }
 
@@ -489,7 +489,7 @@ h3{
     border-radius: 50%;
     border: none;
     cursor: pointer;
-    background: #6c63ff;
+    background: #0d2a70;
     color: white;
     font-size: 18px;
     display:flex;
@@ -580,7 +580,7 @@ h3{
     flex: 1;
     padding: 8px 12px;
     border-radius: 8px;
-    border: 1px solid #6c63ff;
+    border: 1px solid #0d2a70;
     outline: none;
     font-size: 15px;
 }
@@ -592,4 +592,20 @@ h3{
     padding: 6px 12px;
     border-radius: 8px;
     cursor: pointer;
+}
+
+.activity-section
+{
+    width:90%;
+    max-width:900px;
+    margin:40px auto;
+}
+
+.activity-item
+{
+    background:white;
+    padding:15px;
+    margin-top:10px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
 }

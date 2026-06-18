@@ -18,6 +18,7 @@
     document.getElementById("topicInput").value = "";
 
     updateStats();
+    addActivity("Added Topic: " + topic);
 }
    
 
@@ -42,6 +43,7 @@
     document.getElementById("projectInput").value = "";
 
     updateStats();
+    addActivity("Added Project: " + project);
 }
 
 function addCompany()
@@ -66,138 +68,8 @@ localStorage.setItem("companies",JSON.stringify(companies));
     document.getElementById("companyStatus").selectedIndex = 0;
 
     updateStats();
+    addActivity("Added Company: " + company);
 }
-
-// function createCompanyItem(company, status)
-// {
-//     let div = document.createElement("div");
-
-//     div.classList.add("company-item");
-
-//     let top = document.createElement("div");
-//     top.classList.add("company-top");
-
-//      let name = document.createElement("span");
-//     name.classList.add("company-name");
-//     name.innerText = company;
-    
-//     let companySpan =document.createElement("span");
-
-//     companySpan.innerText = company;
-
-//     let statusSpan =document.createElement("span");
-
-//     statusSpan.innerText = status;
-
-//     statusSpan.classList.add("status-badge");
-
-// if(status === "Applied")
-// {
-//     statusSpan.classList.add("applied");
-// }
-// else if(status === "Online Assessment")
-// {
-//     statusSpan.classList.add("assessment");
-// }
-// else if(status === "Interview")
-// {
-//     statusSpan.classList.add("interview");
-// }
-// else if(status === "Selected")
-// {
-//     statusSpan.classList.add("selected");
-// }
-// else if(status === "Rejected")
-// {
-//     statusSpan.classList.add("rejected");
-// }
-
-//     let editBtn = document.createElement("button");
-// editBtn.innerText = "Edit";
-
-// editBtn.onclick = function()
-// {
-//     let select = document.createElement("select");
-
-//     let statuses = [
-//         "Applied",
-//         "Online Assessment",
-//         "Interview",
-//         "Selected",
-//         "Rejected"
-//     ];
-
-//     statuses.forEach(s =>
-//     {
-//         let option = document.createElement("option");
-//         option.value = s;
-//         option.text = s;
-
-//         if(s === status)
-//         {
-//             option.selected = true;
-//         }
-
-//         select.appendChild(option);
-//     });
-
-//     statusSpan.replaceWith(select);
-
-//     select.onchange = function()
-//     {
-//         let newStatus = select.value;
-
-//         let companies =
-//         JSON.parse(localStorage.getItem("companies")) || [];
-
-//         let item = companies.find(
-//             c => c.company === company &&
-//                  c.status === status
-//         );
-
-//         if(item)
-//         {
-//             item.status = newStatus;
-//         }
-
-//         localStorage.setItem(
-//             "companies",
-//             JSON.stringify(companies)
-//         );
-
-//         status = newStatus;
-
-//         statusSpan.innerText = newStatus;
-//         select.replaceWith(statusSpan);
-//     };
-// };
-
-//     let btn =document.createElement("button");
-
-//     btn.innerText = "Delete";
-
-//     btn.onclick = function()
-//     {
-//         div.remove();
-
-//         let companies =JSON.parse(localStorage.getItem("companies")) || [];
-
-//         companies = companies.filter(item =>!(item.company === company &&  item.status === status));
-
-//         localStorage.setItem("companies",JSON.stringify(companies));
-
-//          updateStats();
-//     };
-
-//     div.appendChild(companySpan);
-//     div.appendChild(statusSpan);
-//     div.appendChild(editBtn);
-//     div.appendChild(btn);
-
-//     document.getElementById("companyList").appendChild(div);
-
-   
-// }
 
 function createCompanyItem(company, status)
 {
@@ -472,6 +344,7 @@ function createItem(text, listId)
         localStorage.setItem(key, JSON.stringify(data));
 
         updateStats();
+        addActivity("Deleted: " + text);
     };
 
     actions.appendChild(editBtn);
@@ -522,10 +395,7 @@ window.onload = function()
     {
         createItem(project, "projectList");
     }
-    let companies =
-JSON.parse(
-localStorage.getItem("companies")
-) || [];
+    let companies =JSON.parse(localStorage.getItem("companies")) || [];
 
 for(let item of companies)
 {
@@ -548,6 +418,7 @@ if(savedTheme === "dark")
 }
 
 updateStats();
+loadActivities();
 };
 
 function updateStats()
@@ -588,5 +459,38 @@ function searchTopics()
         {
             item.style.display = "none";
         }
+    });
+}
+
+function addActivity(message)
+{
+    let activities =
+    JSON.parse(
+    localStorage.getItem("activities")
+    ) || [];
+
+    activities.unshift(message);
+
+    localStorage.setItem(
+    "activities",
+    JSON.stringify(activities)
+    );
+
+    loadActivities();
+}
+
+function loadActivities()
+{
+    let activities =JSON.parse(localStorage.getItem("activities")) || [];
+
+    let list =document.getElementById("activityList"); list.innerHTML = "";
+
+    activities.slice(0,10).forEach(item =>{let div = document.createElement("div");
+
+        div.classList.add("activity-item");
+
+        div.innerText = item;
+
+        list.appendChild(div);
     });
 }
