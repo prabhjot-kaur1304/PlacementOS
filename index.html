@@ -96,6 +96,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     <h4>Companies</h4>
     <p id="companyCount">0</p>
 </div>
+
+<div class="Questions">
+    <h4>Resumes</h4>
+    <p id="resumeCount">0</p>
+</div>
+
       </section>
         <hr>
 
@@ -105,6 +111,42 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     <div id="activityList">
     </div>
 </div>
+<hr>
+
+<section class="resume-dashboard">
+
+<div class="Questions">
+    <h4>Total Resumes</h4>
+    <p id="totalResumeCount">0</p>
+</div>
+
+<div class="Questions">
+    <h4>SDE</h4>
+    <p id="sdeResumeCount">0</p>
+</div>
+
+<div class="Questions">
+    <h4>Frontend</h4>
+    <p id="frontendResumeCount">0</p>
+</div>
+
+<div class="Questions">
+    <h4>Backend</h4>
+    <p id="backendResumeCount">0</p>
+</div>
+
+<div class="Questions">
+    <h4>Full Stack</h4>
+    <p id="fullstackResumeCount">0</p>
+</div>
+
+<div class="Questions">
+    <h4>AI/ML</h4>
+    <p id="aimlResumeCount">0</p>
+</div>
+
+</section>
+
 <hr>
          <h3>Search</h3>
        <div class="search-box">
@@ -167,6 +209,32 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     <div id="companyList"></div>
 
 </div>
+
+
+<div class="Topic-Manager">
+
+    <label><b>Resume Manager</b></label>
+
+    <input type="text" id="resumeName" placeholder="Resume Name">
+
+
+    
+     <select id="resumeRole">
+        <option>SDE</option>
+        <option>Frontend</option>
+        <option>Backend</option>
+        <option>Full Stack</option>
+        <option>AI/ML</option>
+    </select>
+
+    <button onclick="addResume()">
+        Save Resume
+    </button>
+
+    <div id="resumeList"></div>
+
+</div>
+
     </section>
     
 </body>

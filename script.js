@@ -397,14 +397,6 @@ window.onload = function()
     }
     let companies =JSON.parse(localStorage.getItem("companies")) || [];
 
-for(let item of companies)
-{
-    createCompanyItem(
-        item.company,
-        item.status
-    );
-}
-
 
 let savedTheme =
 localStorage.getItem("theme");
@@ -417,12 +409,26 @@ if(savedTheme === "dark")
     .innerText = "☀️";
 }
 
+let resumes =
+JSON.parse(
+localStorage.getItem("resumes")
+) || [];
+
+for(let resume of resumes)
+{
+    createResumeItem(resume);
+}
+
+
 updateStats();
 loadActivities();
+updateResumeStats();
 };
 
 function updateStats()
 {
+
+    
     let topics =
     JSON.parse(localStorage.getItem("topics")) || [];
 
@@ -431,6 +437,12 @@ function updateStats()
 
     let companies =
     JSON.parse(localStorage.getItem("companies")) || [];
+
+    let resumes =
+    JSON.parse(localStorage.getItem("resumes")) || [];
+
+    document.getElementById("resumeCount")
+    .innerText = resumes.length;
 
     document.getElementById("topicCount").innerText =
     topics.length;
@@ -493,4 +505,151 @@ function loadActivities()
 
         list.appendChild(div);
     });
+}
+
+
+function addResume()
+{
+    console.log("Resume Added");
+
+    let resumeName =
+    document.getElementById("resumeName").value;
+
+    let resumeRole =
+    document.getElementById("resumeRole").value;
+
+    if(resumeName === "")
+    {
+        return;
+    }
+
+    let resumes =
+    JSON.parse(localStorage.getItem("resumes")) || [];
+
+    let resume =
+    {
+        name: resumeName,
+        role: resumeRole
+    };
+
+    resumes.push(resume);
+
+    localStorage.setItem(
+        "resumes",
+        JSON.stringify(resumes)
+    );
+
+    createResumeItem(resume);
+
+    document.getElementById("resumeName").value = "";
+
+    updateStats();
+    updateResumeStats();
+
+    addActivity(
+        "Added Resume: " +
+        resumeName +
+        " (" +
+        resumeRole +
+        ")"
+    );
+}
+
+function createResumeItem(resume)
+{
+    let div = document.createElement("div");
+
+    div.classList.add("tracker-item");
+
+    let span = document.createElement("span");
+
+    span.innerText =
+    resume.name + " (" + resume.role + ")";
+
+    let deleteBtn =
+    document.createElement("button");
+
+    deleteBtn.innerText = "Delete";
+
+    deleteBtn.onclick = function()
+    {
+        div.remove();
+
+        let resumes =
+        JSON.parse(localStorage.getItem("resumes")) || [];
+
+        resumes = resumes.filter(item =>
+            !(item.name === resume.name &&
+              item.role === resume.role)
+        );
+
+        localStorage.setItem(
+            "resumes",
+            JSON.stringify(resumes)
+        );
+
+        updateStats();
+        updateResumeStats();
+    };
+
+    div.appendChild(span);
+    div.appendChild(deleteBtn);
+
+    document
+    .getElementById("resumeList")
+    .appendChild(div);
+}
+
+
+function updateResumeStats()
+{
+    let resumes =
+    JSON.parse(localStorage.getItem("resumes")) || [];
+
+    let sde = 0;
+    let frontend = 0;
+    let backend = 0;
+    let fullstack = 0;
+    let aiml = 0;
+
+   
+    resumes.forEach(resume =>
+    {
+        if(resume.role === "SDE")
+            sde++;
+
+        else if(resume.role === "Frontend")
+            frontend++;
+
+        else if(resume.role === "Backend")
+            backend++;
+
+        else if(resume.role === "Full Stack")
+            fullstack++;
+
+        else if(resume.role === "AI/ML")
+            aiml++;
+    });
+
+    console.log(
+JSON.parse(localStorage.getItem("resumes"))
+);
+
+    document.getElementById("totalResumeCount").innerText =
+    resumes.length;
+
+    document.getElementById("sdeResumeCount").innerText =
+    sde;
+
+    document.getElementById("frontendResumeCount").innerText =
+    frontend;
+
+    document.getElementById("backendResumeCount").innerText =
+    backend;
+
+    document.getElementById("fullstackResumeCount").innerText =
+    fullstack;
+
+    document.getElementById("aimlResumeCount").innerText =
+    aiml;
 }
