@@ -671,3 +671,32 @@ h3{
     background:#dbeafe;
     color:#1d4ed8;
 }
+.readiness-container
+{
+    width:80%;
+    max-width:800px;
+    margin:30px auto;
+    text-align:center;
+}
+
+.progress-bar
+{
+    width:100%;
+    height:25px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+#readinessBar
+{
+    width:0%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        #22c55e,
+        #16a34a
+    );
+    transition:0.5s;
+}

@@ -43,6 +43,7 @@
     document.getElementById("projectInput").value = "";
 
     updateStats();
+    updateReadiness();
     addActivity("Added Project: " + project);
 }
 
@@ -68,6 +69,7 @@ localStorage.setItem("companies",JSON.stringify(companies));
     document.getElementById("companyStatus").selectedIndex = 0;
 
     updateStats();
+    updateReadiness();
     addActivity("Added Company: " + company);
 }
 
@@ -397,6 +399,14 @@ window.onload = function()
     }
     let companies =JSON.parse(localStorage.getItem("companies")) || [];
 
+    for(let company of companies)
+{
+    createCompanyItem(
+        company.company,
+        company.status
+    );
+}
+
 
 let savedTheme =
 localStorage.getItem("theme");
@@ -428,16 +438,13 @@ for(let question of questions)
     createQuestionItem(question);
 }
 
-for(let question of questions)
-{
-    createQuestionItem(question);
-}
 
 
 updateStats();
 loadActivities();
 updateResumeStats();
 updateQuestionStats();
+updateReadiness();
 };
 
 function updateStats()
@@ -567,6 +574,7 @@ function addResume()
     document.getElementById("resumeName").value = "";
 
     updateStats();
+    updateReadiness();
     updateResumeStats();
 
     addActivity(
@@ -720,6 +728,7 @@ function addQuestion()
     document.getElementById("questionName").value = "";
 
     updateQuestionStats();
+    updateReadiness();
 }
 
 function createQuestionItem(question)
@@ -802,6 +811,18 @@ function updateQuestionStats()
         {
             solved++;
         }
+        let total = questions.length;
+
+     let dsaReadinessValue = 0;
+
+if(questions.length > 0)
+{
+    dsaReadiness =
+    Math.round(
+        (solved / questions.length) * 100
+    );
+}
+
     });
 
     document.getElementById("questionCount").innerText =
@@ -818,4 +839,100 @@ function updateQuestionStats()
 
     document.getElementById("solvedCount").innerText =
     solved;
+
+    document.getElementById("dsaReadiness").innerText =
+dsaReadinessValue + "%";
+
+}
+
+function updateReadiness()
+{
+    let questions =
+    JSON.parse(localStorage.getItem("questions")) || [];
+
+    let projects =
+    JSON.parse(localStorage.getItem("projects")) || [];
+
+    let resumes =
+    JSON.parse(localStorage.getItem("resumes")) || [];
+
+    let companies =
+    JSON.parse(localStorage.getItem("companies")) || [];
+
+    let solvedQuestions =
+    questions.filter(
+        q => q.status === "Solved"
+    ).length;
+
+    let dsaScore =
+Math.min(
+(solvedQuestions / 500) * 100,
+100
+);
+let projectScore =
+Math.min(
+(projects.length / 5) * 100,
+100
+);
+let resumeScore =
+Math.min(
+(resumes.length / 3) * 100,
+100
+);
+
+let applicationPoints = 0;
+
+companies.forEach(company =>
+{
+    if(company.status === "Applied")
+        applicationPoints += 1;
+
+    else if(company.status === "Online Assessment")
+        applicationPoints += 2;
+
+    else if(company.status === "Interview")
+        applicationPoints += 3;
+
+    else if(company.status === "Selected")
+        applicationPoints += 5;
+});
+
+let applicationScore =
+Math.min(
+(applicationPoints / 50) * 100,
+100
+);
+
+   let readiness =
+
+(dsaScore * 0.40) +
+(projectScore * 0.25) +
+(resumeScore * 0.15) +
+(applicationScore * 0.20);
+
+readiness = Math.round(readiness);
+
+    document.getElementById("readinessScore"
+).innerText =
+    readiness + "%";
+
+    document.getElementById("readinessBar").style.width =
+readiness + "%";
+
+let bar =
+document.getElementById("readinessBar");
+
+
+if(readiness < 40)
+{
+    bar.style.background = "#ef4444";
+}
+else if(readiness < 70)
+{
+    bar.style.background = "#f59e0b";
+}
+else
+{
+    bar.style.background = "#22c55e";
+}
 }
