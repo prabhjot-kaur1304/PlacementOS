@@ -626,3 +626,48 @@ h3{
     justify-content: center;
 
 }
+.DSA-Questions-dashboard
+{
+    
+    gap: 20px;
+    margin-bottom:20px;
+
+}
+.row
+{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    gap:20px;
+    margin-bottom:20px;
+
+}
+.easy{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.medium{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+.hard{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.solved{
+    background:#d1fae5;
+    color:#065f46;
+}
+
+.pending{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.revision{
+    background:#dbeafe;
+    color:#1d4ed8;
+}

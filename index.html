@@ -103,6 +103,51 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 </div>
 
       </section>
+
+      <h3>DSA Analytics</h3>
+<section class="DSA-Questions-dashboard">
+
+    <div class="row">
+    <div class="Questions">
+    <h4>Total Questions</h4>
+    <p id="questionCount">0</p>
+</div>
+
+<div class="Questions">
+    <h4>Solved</h4>
+    <p id="solvedCount">0</p>
+</div>
+
+<div class="Questions">
+    <h4>Readiness</h4>
+    <p id="readinessScore">0</p>
+</div>
+    </div>
+
+<div class="row">
+    <div class="Questions">
+    <h4>Easy</h4>
+    <p id="easyCount">0</p>
+</div>
+
+<div class="Questions">
+    <h4>Medium</h4>
+    <p id="mediumCount">0</p>
+</div>
+
+<div class="Questions">
+    <h4>Hard</h4>
+    <p id="hardCount">0</p>
+</div>
+
+<div class="Questions">
+    <h4>Questions</h4>
+    <p id="questionCount">0</p>
+</div>
+
+
+</div>
+</section>
         <hr>
 
       
@@ -149,10 +194,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     </div>
 </div>
 <hr>
+
+<hr>
          <h3>Search</h3>
        <div class="search-box">
         <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Search Topics, Projects, Companies..." onkeyup="searchAll()">
+            <input type="text" id="searchInput" placeholder="Search Topics, Projects, Companies ,Search Questions..." onkeyup="searchAll()">
        </div>
        <hr>
 
@@ -233,8 +280,52 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     </button>
 
     <div id="resumeList"></div>
+</div>
+
+<div class="Topic-Manager">
+
+    <label><b>DSA Question Manager</b></label>
+
+    <input type="text" id="questionName" placeholder="Question Name">
+
+    <select id="questionTopic">
+        <option>Arrays</option>
+        <option>Strings</option>
+        <option>Linked List</option>
+        <option>Trees</option>
+        <option>Graphs</option>
+        <option>DP</option>
+    </select>
+
+    <select id="questionDifficulty">
+        <option>Easy</option>
+        <option>Medium</option>
+        <option>Hard</option>
+    </select>
+
+    <select id="questionStatus">
+        <option>Solved</option>
+        <option>Pending</option>
+        <option>Revision</option>
+    </select>
+
+
+    <button onclick="addQuestion()">
+        Add Question
+    </button>
+<div class="filter-buttons">
+    <button onclick="filterDifficulty('All')">All</button>
+
+<button onclick="filterDifficulty('Easy')">Easy</button>
+
+<button onclick="filterDifficulty('Medium')">Medium</button>
+
+<button onclick="filterDifficulty('Hard')">Hard</button>
+</div>
+    <div id="questionList"></div>
 
 </div>
+
 
     </section>
     

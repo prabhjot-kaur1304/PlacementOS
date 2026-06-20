@@ -209,7 +209,7 @@ function searchAll()
     .toLowerCase();
 
     let items =
-    document.querySelectorAll(".topic-item");
+    document.querySelectorAll(".tracker-item ,.company-item");
 
     items.forEach(item =>
     {
@@ -420,9 +420,24 @@ for(let resume of resumes)
 }
 
 
+let questions =
+JSON.parse(localStorage.getItem("questions")) || [];
+
+for(let question of questions)
+{
+    createQuestionItem(question);
+}
+
+for(let question of questions)
+{
+    createQuestionItem(question);
+}
+
+
 updateStats();
 loadActivities();
 updateResumeStats();
+updateQuestionStats();
 };
 
 function updateStats()
@@ -452,6 +467,14 @@ function updateStats()
 
     document.getElementById("companyCount").innerText =
     companies.length;
+
+    let questions =
+JSON.parse(localStorage.getItem("questions")) || [];
+
+document.getElementById("questionCount").innerText =
+questions.length;
+
+
 }
 function searchTopics()
 {
@@ -652,4 +675,147 @@ JSON.parse(localStorage.getItem("resumes"))
 
     document.getElementById("aimlResumeCount").innerText =
     aiml;
+}
+
+//dsa question manager
+function addQuestion()
+{
+    let title =
+    document.getElementById("questionName").value;
+
+    let topic =
+    document.getElementById("questionTopic").value;
+
+    let difficulty =
+    document.getElementById("questionDifficulty").value;
+
+    let status =
+    document.getElementById("questionStatus").value;
+
+    if(title === "")
+    {
+        return;
+    }
+
+    let questions =
+    JSON.parse(localStorage.getItem("questions")) || [];
+
+    let question =
+    {
+        title: title,
+        topic: topic,
+        difficulty: difficulty,
+        status: status
+    };
+
+    questions.push(question);
+
+    localStorage.setItem(
+        "questions",
+        JSON.stringify(questions)
+    );
+
+    createQuestionItem(question);
+
+    document.getElementById("questionName").value = "";
+
+    updateQuestionStats();
+}
+
+function createQuestionItem(question)
+{
+    let div = document.createElement("div");
+
+    div.classList.add("tracker-item");
+
+    let info = document.createElement("div");
+
+    info.innerHTML =
+    `
+    <strong>${question.title}</strong><br>
+    ${question.topic} |
+    ${question.difficulty} |
+    ${question.status}
+    `;
+
+    let deleteBtn =
+    document.createElement("button");
+
+    deleteBtn.innerText = "Delete";
+
+    deleteBtn.onclick = function()
+    {
+        div.remove();
+
+        let questions =
+        JSON.parse(localStorage.getItem("questions")) || [];
+
+        questions = questions.filter(q =>
+            !(q.title === question.title &&
+              q.topic === question.topic)
+        );
+
+        localStorage.setItem(
+            "questions",
+            JSON.stringify(questions)
+        );
+
+        updateQuestionStats();
+    };
+
+    div.appendChild(info);
+    div.appendChild(deleteBtn);
+
+    document
+    .getElementById("questionList")
+    .appendChild(div);
+}
+
+function updateQuestionStats()
+{
+    let questions =
+    JSON.parse(localStorage.getItem("questions")) || [];
+
+    let easy = 0;
+    let medium = 0;
+    let hard = 0;
+    let solved = 0;
+
+    questions.forEach(q =>
+    {
+        if(q.difficulty === "Easy")
+        {
+            easy++;
+        }
+
+        if(q.difficulty === "Medium")
+        {
+            medium++;
+        }
+
+        if(q.difficulty === "Hard")
+        {
+            hard++;
+        }
+
+        if(q.status === "Solved")
+        {
+            solved++;
+        }
+    });
+
+    document.getElementById("questionCount").innerText =
+    questions.length;
+
+    document.getElementById("easyCount").innerText =
+    easy;
+
+    document.getElementById("mediumCount").innerText =
+    medium;
+
+    document.getElementById("hardCount").innerText =
+    hard;
+
+    document.getElementById("solvedCount").innerText =
+    solved;
 }
