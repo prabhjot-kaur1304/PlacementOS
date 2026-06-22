@@ -70,6 +70,7 @@ localStorage.setItem("companies",JSON.stringify(companies));
 
     updateStats();
     updateReadiness();
+    updateCompanyStats();
     addActivity("Added Company: " + company);
 }
 
@@ -445,6 +446,7 @@ loadActivities();
 updateResumeStats();
 updateQuestionStats();
 updateReadiness();
+updateCompanyStats();
 };
 
 function updateStats()
@@ -935,4 +937,49 @@ else
 {
     bar.style.background = "#22c55e";
 }
+}
+
+function updateCompanyStats()
+{
+    let companies =
+    JSON.parse(localStorage.getItem("companies")) || [];
+
+    let applied = 0;
+    let assessment = 0;
+    let interview = 0;
+    let selected = 0;
+    let rejected = 0;
+
+    companies.forEach(company =>
+    {
+        if(company.status === "Applied")
+            applied++;
+
+        else if(company.status === "Online Assessment")
+            assessment++;
+
+        else if(company.status === "Interview")
+            interview++;
+
+        else if(company.status === "Selected")
+            selected++;
+
+        else if(company.status === "Rejected")
+            rejected++;
+    });
+
+    document.getElementById("appliedCount").innerText =
+    applied;
+
+    document.getElementById("assessmentCount").innerText =
+    assessment;
+
+    document.getElementById("interviewCount").innerText =
+    interview;
+
+    document.getElementById("selectedCount").innerText =
+    selected;
+
+    document.getElementById("rejectedCount").innerText =
+    rejected;
 }
