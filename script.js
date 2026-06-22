@@ -44,6 +44,7 @@
 
     updateStats();
     updateReadiness();
+    updateGoalStats();
     addActivity("Added Project: " + project);
 }
 
@@ -71,6 +72,7 @@ localStorage.setItem("companies",JSON.stringify(companies));
     updateStats();
     updateReadiness();
     updateCompanyStats();
+    updateGoalStats();
     addActivity("Added Company: " + company);
 }
 
@@ -158,6 +160,9 @@ editBtn.onclick = function () {
 
         localStorage.setItem("companies", JSON.stringify(companies));
 
+        updateCompanyStats();
+        updateReadiness();
+
         status = newStatus;
 
         statusSpan.innerText = newStatus;
@@ -179,6 +184,9 @@ delBtn.onclick = function () {
     localStorage.setItem("companies", JSON.stringify(companies));
 
     updateStats();
+    updateCompanyStats();
+    updateReadiness();
+    updateGoalStats();
 };
 
 
@@ -347,6 +355,8 @@ function createItem(text, listId)
         localStorage.setItem(key, JSON.stringify(data));
 
         updateStats();
+        updateCompanyStats();
+        updateReadiness();
         addActivity("Deleted: " + text);
     };
 
@@ -447,6 +457,7 @@ updateResumeStats();
 updateQuestionStats();
 updateReadiness();
 updateCompanyStats();
+updateGoalStats();
 };
 
 function updateStats()
@@ -578,6 +589,7 @@ function addResume()
     updateStats();
     updateReadiness();
     updateResumeStats();
+    updateGoalStats();
 
     addActivity(
         "Added Resume: " +
@@ -623,6 +635,8 @@ function createResumeItem(resume)
 
         updateStats();
         updateResumeStats();
+        updateReadiness();
+        updateGoalStats();
     };
 
     div.appendChild(span);
@@ -731,6 +745,7 @@ function addQuestion()
 
     updateQuestionStats();
     updateReadiness();
+    updateGoalStats();
 }
 
 function createQuestionItem(question)
@@ -772,6 +787,8 @@ function createQuestionItem(question)
         );
 
         updateQuestionStats();
+        updateReadiness();
+        updateGoalStats();
     };
 
     div.appendChild(info);
@@ -981,4 +998,40 @@ function updateCompanyStats()
 
     document.getElementById("rejectedCount").innerText =
     rejected;
+}
+
+function updateGoalStats()
+{
+    let questions =
+    JSON.parse(localStorage.getItem("questions")) || [];
+
+    let projects =
+    JSON.parse(localStorage.getItem("projects")) || [];
+
+    let companies =
+    JSON.parse(localStorage.getItem("companies")) || [];
+
+    let resumes =
+    JSON.parse(localStorage.getItem("resumes")) || [];
+
+    let solved =
+    questions.filter(
+        q => q.status === "Solved"
+    ).length;
+
+    document.getElementById("dsaGoal")
+    .innerText =
+    solved + " / 500";
+
+    document.getElementById("projectGoal")
+    .innerText =
+    projects.length + " / 5";
+
+    document.getElementById("companyGoal")
+    .innerText =
+    companies.length + " / 50";
+
+    document.getElementById("resumeGoal")
+    .innerText =
+    resumes.length + " / 3";
 }
