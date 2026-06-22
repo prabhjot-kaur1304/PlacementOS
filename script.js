@@ -162,6 +162,7 @@ editBtn.onclick = function () {
 
         updateCompanyStats();
         updateReadiness();
+        updateGoalStats();
 
         status = newStatus;
 
@@ -859,7 +860,7 @@ if(questions.length > 0)
     solved;
 
     document.getElementById("dsaReadiness").innerText =
-dsaReadinessValue + "%";
+dsaReadiness + "%";
 
 }
 
