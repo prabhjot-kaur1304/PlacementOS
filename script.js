@@ -813,9 +813,8 @@ function updateQuestionStats()
         {
             solved++;
         }
-        let total = questions.length;
-
-     let dsaReadinessValue = 0;
+       
+     let dsaReadiness = 0;
 
 if(questions.length > 0)
 {
