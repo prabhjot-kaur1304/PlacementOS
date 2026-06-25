@@ -931,6 +931,20 @@ Math.min(
 
 readiness = Math.round(readiness);
 
+let level = "Beginner";
+
+if(readiness >= 70)
+{
+    level = "Placement Ready";
+}
+else if(readiness >= 40)
+{
+    level = "Intermediate";
+}
+
+document.getElementById("readinessLevel")
+.innerText = level;
+
     document.getElementById("readinessScore"
 ).innerText =
     readiness + "%";
@@ -1035,4 +1049,53 @@ function updateGoalStats()
     document.getElementById("resumeGoal")
     .innerText =
     resumes.length + " / 3";
+}
+
+function filterDifficulty(level)
+{
+    let items =
+    JSON.parse(localStorage.getItem("questions")) || [];
+
+    console.log(level);
+}
+
+function filterDifficulty(level)
+{
+    let cards =
+    document.querySelectorAll("#questionList .tracker-item");
+
+    cards.forEach(card =>
+    {
+        let text = card.innerText;
+
+        if(level === "All" ||
+           text.includes(level))
+        {
+            card.style.display = "flex";
+        }
+        else
+        {
+            card.style.display = "none";
+        }
+    });
+}
+function filterDifficulty(level)
+{
+    let cards =
+    document.querySelectorAll("#questionList .tracker-item");
+
+    cards.forEach(card =>
+    {
+        let text = card.innerText;
+
+        if(level === "All" ||
+           text.includes(level))
+        {
+            card.style.display = "flex";
+        }
+        else
+        {
+            card.style.display = "none";
+        }
+    });
 }
